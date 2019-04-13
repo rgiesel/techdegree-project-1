@@ -36,14 +36,14 @@ let colors = ['red', 'orange', 'black', 'green', 'blue', 'purple']
 
 // Sets a timer to automatically call the 'printQuote' function every 10 seconds
 
-window.setInterval(printQuote, 10000);
+let intervalID = window.setInterval(printQuote, 10000);
 
 /***
   Creates a function that calls the 'getRandomQuote' function above, concatenates
   an HTML string that includes the properties present in the random object, and
   sets the 'quote-box'div innerHTML equal to the HTML string. Also changes the
   background color of the page by choosing a color from the 'colors' array at
-  random.
+  random. Resets the timer created above each time the function is called.
 ***/
 
 function printQuote() {
@@ -60,6 +60,8 @@ function printQuote() {
   string += '</p><p>' + printedQuote.tags + '</p>';
   document.getElementById('quote-box').innerHTML = string;
   document.body.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+  window.clearInterval(intervalID);
+  intervalID = window.setInterval(printQuote, 10000);
 }
 
 // Calls the 'printQuote' function  when the "Show another quote" button is clicked.
