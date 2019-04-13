@@ -57,7 +57,10 @@ function printQuote() {
   if (printedQuote.year) {
     string += '<span class="year">' + printedQuote.year + '</span>';
   }
-  string += '</p><p>' + printedQuote.tags + '</p>';
+  if (printedQuote.tags) {
+    string += '</p><p>' + printedQuote.tags;
+  }
+  string += '</p>';
   document.getElementById('quote-box').innerHTML = string;
   document.body.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
   window.clearInterval(intervalID);
