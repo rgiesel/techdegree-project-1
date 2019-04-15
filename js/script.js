@@ -25,18 +25,14 @@ let quotes = [
 
 // Creates a function that returns an object from the 'quotes' array at random
 
-function getRandomQuote() {
-  let quoteObjNum = Math.floor(Math.random() * quotes.length);
+const getRandomQuote = () => {
+  const quoteObjNum = Math.floor(Math.random() * quotes.length);
   return quotes[quoteObjNum];
 }
 
 // Creates an array of colors to be used in the 'printQuote' function
 
 let colors = ['red', 'orange', 'black', 'green', 'blue', 'purple']
-
-// Sets a timer to automatically call the 'printQuote' function every 10 seconds
-
-let intervalID = window.setInterval(printQuote, 10000);
 
 /***
   Creates a function that calls the 'getRandomQuote' function above, concatenates
@@ -46,26 +42,30 @@ let intervalID = window.setInterval(printQuote, 10000);
   random. Resets the timer created above each time the function is called.
 ***/
 
-function printQuote() {
-  let printedQuote = getRandomQuote();
+const printQuote = () => {
+  const printedQuote = getRandomQuote();
   let string = '';
-  string += '<p class="quote">' + printedQuote.quote + '</p>';
-  string += '<p class="source">' + printedQuote.source;
+  string += `<p class="quote"> ${printedQuote.quote} </p>`;
+  string += `<p class="source"> ${printedQuote.source}`;
   if (printedQuote.citation) {
-    string += '<span class="citation">' + printedQuote.citation + '</span>';
+    string += `<span class="citation"> ${printedQuote.citation} </span>`;
   }
   if (printedQuote.year) {
-    string += '<span class="year">' + printedQuote.year + '</span>';
+    string += `<span class="year"> ${printedQuote.year} </span>`;
   }
   if (printedQuote.tags) {
-    string += '</p><p>' + printedQuote.tags;
+    string += `</p><p> ${printedQuote.tags}`;
   }
-  string += '</p>';
+  string += `</p>`;
   document.getElementById('quote-box').innerHTML = string;
   document.body.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
   window.clearInterval(intervalID);
   intervalID = window.setInterval(printQuote, 10000);
 }
+
+// Sets a timer to automatically call the 'printQuote' function every 10 seconds
+
+let intervalID = window.setInterval(printQuote, 10000);
 
 // Calls the 'printQuote' function  when the "Show another quote" button is clicked.
 
